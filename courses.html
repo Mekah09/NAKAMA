@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NAKAMA - Courses</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            nakama: {
+              primary: '#1e40af',
+              secondary: '#3b82f6',
+              accent: '#93c5fd',
+              light: '#dbeafe',
+              dark: '#1e3a8a'
+            }
+          }
+        }
+      }
+    }
+    // Hamburger menu toggle for mobile
+    document.addEventListener('DOMContentLoaded', function () {
+      const menuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (menuButton && mobileMenu) {
+        menuButton.addEventListener('click', function () {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+    });
+  </script>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="bg-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <div class="flex-shrink-0 flex items-center">
+            <div
+              class="w-10 h-10 rounded-full bg-nakama-primary flex items-center justify-center text-white font-bold text-xl">
+              N</div>
+            <span class="ml-2 text-xl font-bold text-nakama-primary">NAKAMA</span>
+          </div>
+          <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+            <a href="NAKAMA.html"
+              class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Dashboard</a>
+            <a href="courses.html"
+              class="border-nakama-primary text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Courses</a>
+            <a href="assessments.html"
+              class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Assessments</a>
+            <a href="progress.html"
+              class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Progress</a>
+          </div>
+        </div>
+        <div class="hidden sm:ml-6 sm:flex sm:items-center">
+          <a href="auth.html">
+
+            <button
+              class="bg-nakama-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-nakama-dark transition duration-300">Get
+              Started</button>
+
+          </a>
+          <div class="ml-3 relative">
+            <div>
+              <button type="button"
+                class="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-nakama-primary"
+                id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                <span class="sr-only">Open user menu</span>
+                <img class="h-8 w-8 rounded-full"
+                  src="profilc pic.jpg"
+                  alt="">
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="-mr-2 flex items-center sm:hidden">
+          <button type="button"
+            class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-nakama-primary">
+            <span class="sr-only">Open main menu</span>
+            <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Courses List Section -->
+  <div class="py-12 bg-nakama-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="lg:text-center mb-12">
+        <h2 class="text-base text-nakama-primary font-semibold tracking-wide uppercase">Available Courses</h2>
+        <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+          Explore Our Course Catalog
+        </p>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Course Card 1 -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+          <img class="h-48 w-full object-cover" src="for qp.jpg" alt="Quantum Physics">
+          <div class="p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Introduction to Quantum Physics</h3>
+            <p class="text-gray-600 text-sm mb-4">Explore the fundamental principles of quantum mechanics and its applications.</p>
+            <a href="course-detail-1.html" class="text-nakama-primary hover:text-nakama-dark font-medium">View Course &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Course Card 2 -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+          <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1350&q=80" alt="Machine Learning">
+          <div class="p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Advanced Machine Learning</h3>
+            <p class="text-gray-600 text-sm mb-4">Dive deep into cutting-edge machine learning algorithms and techniques.</p>
+            <a href="course-detail-2.html" class="text-nakama-primary hover:text-nakama-dark font-medium">View Course &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Course Card 3 (New Example) -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+          <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1350&q=80" alt="Web Development">
+          <div class="p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Full-Stack Web Development</h3>
+            <p class="text-gray-600 text-sm mb-4">Learn to build complete web applications from front-end to back-end.</p>
+            <!-- Linking to course-detail-1.html as an example -->
+            <a href="course-detail-1.html" class="text-nakama-primary hover:text-nakama-dark font-medium">View Course &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Course Card 4 (New Example) -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+          <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1350&q=80" alt="Data Science">
+          <div class="p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Introduction to Data Science</h3>
+            <p class="text-gray-600 text-sm mb-4">Get started with data analysis, visualization, and machine learning basics.</p>
+            <!-- Linking to course-detail-2.html as an example -->
+            <a href="course-detail-2.html" class="text-nakama-primary hover:text-nakama-dark font-medium">View Course &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Course Card 5 (New Example) -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+          <img class="h-48 w-full object-cover" src="FCS.jpg" alt="Cybersecurity">
+          <div class="p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Fundamentals of Cybersecurity</h3>
+            <p class="text-gray-600 text-sm mb-4">Learn the basics of protecting systems and data from cyber threats.</p>
+            <!-- Linking to course-detail-1.html as an example -->
+            <a href="course-detail-1.html" class="text-nakama-primary hover:text-nakama-dark font-medium">View Course &rarr;</a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer (Optional - you can copy the footer from NAKAMA.html if you have one) -->
+  <footer class="bg-gray-800 text-white py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p>&copy; 2025 NAKAMA. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+
+</html>

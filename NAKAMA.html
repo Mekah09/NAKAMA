@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NAKAMA - Adaptive Learning Platform</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            nakama: {
+              primary: '#1e40af',
+              secondary: '#3b82f6',
+              accent: '#93c5fd',
+              light: '#dbeafe',
+              dark: '#1e3a8a'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- The <style> block that was here has been removed and its content moved to assets/css/styles.css -->
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="bg-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <div class="flex-shrink-0 flex items-center">
+            <div
+              class="w-10 h-10 rounded-full bg-nakama-primary flex items-center justify-center text-white font-bold text-xl">
+              N</div>
+            <span class="ml-2 text-xl font-bold text-nakama-primary">NAKAMA</span>
+          </div>
+          <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+            <a href="#"
+              class="border-nakama-primary text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Dashboard</a>
+            <a href="courses.html"
+              class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Courses</a>
+            <a href="assessments.html" // Link updated to assessments.html
+              class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Assessments</a>
+            <a href="progress.html" // Link updated to progress.html
+              class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Progress</a>
+          </div>
+        </div>
+        <div class="hidden sm:ml-6 sm:flex sm:items-center">
+          <a href="auth.html" // Added href to link to auth.html
+            class="bg-nakama-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-nakama-dark transition duration-300">Get
+            Started</a>
+          <div class="ml-3 relative">
+            <div>
+              <button type="button"
+                class="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-nakama-primary"
+                id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                <span class="sr-only">Open user menu</span>
+                <img class="h-8 w-8 rounded-full"
+                  src="profilc pic.jpg"
+                  alt="">
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="-mr-2 flex items-center sm:hidden">
+          <button type="button"
+            class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-nakama-primary"
+            id="mobile-menu-button" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <!-- Icon when menu is open.
+
+                                    Heroicon name: outline/x
+
+                                    Menu open: "block", Menu closed: "hidden"
+                                  -->
+            <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile menu, show/hide based on menu state. -->
+    <!-- Add 'hidden' class by default and toggle with JS -->
+    <div class="sm:hidden hidden" id="mobile-menu">
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        <a href="#"
+          class="bg-nakama-light text-nakama-primary block px-3 py-2 rounded-md text-base font-medium"
+          aria-current="page">Dashboard</a>
+        <a href="courses.html"
+          class="text-gray-500 hover:bg-gray-100 hover:text-gray-700 block px-3 py-2 rounded-md text-base font-medium">Courses</a>
+        <a href="assessments.html"
+          class="text-gray-500 hover:bg-gray-100 hover:text-gray-700 block px-3 py-2 rounded-md text-base font-medium">Assessments</a>
+        <a href="progress.html"
+          class="text-gray-500 hover:bg-gray-100 hover:text-gray-700 block px-3 py-2 rounded-md text-base font-medium">Progress</a>
+      </div>
+      <div class="pt-4 pb-3 border-t border-gray-200">
+        <div class="flex items-center px-5">
+          <div class="flex-shrink-0">
+            <img class="h-10 w-10 rounded-full"
+              src="profilc pic.jpg"
+              alt="">
+          </div>
+          <div class="ml-3">
+            <div class="text-base font-medium text-gray-800">User Name</div>
+            <div class="text-sm font-medium text-gray-500">user@example.com</div>
+          </div>
+          <button type="button"
+            class="ml-auto flex-shrink-0 bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-nakama-primary">
+            <span class="sr-only">View notifications</span>
+            <!-- Heroicon name: outline/bell -->
+            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+            </svg>
+          </button>
+        </div>
+        <div class="mt-3 px-2 space-y-1">
+          <a href="#"
+            class="block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">Your
+            Profile</a>
+          <a href="#"
+            class="block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">Settings</a>
+          <a href="#"
+            class="block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">Sign
+            out</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <div class="gradient-bg text-white">
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 lg:py-24">
+      <div class="lg:grid lg:grid-cols-2 lg:gap-8 items-center">
+        <div>
+          <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl mb-4">
+            Your Personalized Learning Journey
+          </h1>
+          <p class="text-xl text-nakama-light max-w-3xl">
+            NAKAMA adapts to your unique learning style, identifies knowledge gaps, and creates customized learning
+            paths to help you master any subject.
+          </p>
+          <div class="mt-8 flex flex-col sm:flex-row gap-4">
+            <a href="courses.html"
+              class="bg-white text-nakama-primary px-6 py-3 rounded-md text-lg font-semibold hover:bg-gray-100 transition duration-300">
+              Start Learning
+            </a>
+            <a href="assessments.html"
+              class="border-2 border-white text-white px-6 py-3 rounded-md text-lg font-semibold hover:bg-white hover:text-nakama-primary transition duration-300">
+              Take Assessment
+            </a>
+          </div>
+        </div>
+        <div class="mt-12 lg:mt-0 relative">
+          <div class="relative mx-auto w-full max-w-md">
+            <div
+              class="absolute top-0 -left-4 w-72 h-72 bg-nakama-accent rounded-full mix-blend-multiply filter blur-xl opacity-70 floating-animation">
+            </div>
+            <div
+              class="absolute top-0 -right-4 w-72 h-72 bg-nakama-secondary rounded-full mix-blend-multiply filter blur-xl opacity-70 floating-animation animation-delay-2000">
+            </div>
+            <div
+              class="absolute -bottom-8 left-20 w-72 h-72 bg-nakama-primary rounded-full mix-blend-multiply filter blur-xl opacity-70 floating-animation animation-delay-4000">
+            </div>
+            <div class="relative bg-white rounded-2xl shadow-xl overflow-hidden p-8">
+              <div class="flex items-center mb-6">
+                <div class="w-12 h-12 rounded-full bg-nakama-primary flex items-center justify-center text-white">
+                  <i class="fas fa-brain text-xl"></i>
+                </div>
+                <div class="ml-4">
+                  <h3 class="text-lg font-semibold text-gray-900">AI Learning Assistant</h3>
+                  <p class="text-gray-500">Adapting to your needs</p>
+                </div>
+              </div>
+              <div class="space-y-4">
+                <div class="flex">
+                  <div class="flex-shrink-0">
+                    <i class="fas fa-check-circle text-nakama-primary"></i>
+                  </div>
+                  <div class="ml-3">
+                    <p class="text-sm text-gray-700">Analyzed your learning patterns</p>
+                  </div>
+                </div>
+                <div class="flex">
+                  <div class="flex-shrink-0">
+                    <i class="fas fa-check-circle text-nakama-primary"></i>
+                  </div>
+                  <div class="ml-3">
+                    <p class="text-sm text-gray-700">Identified 3 knowledge gaps</p>
+                  </div>
+                </div>
+                <div class="flex">
+                  <div class="flex-shrink-0">
+                    <i class="fas fa-check-circle text-nakama-primary"></i>
+                  </div>
+                  <div class="ml-3">
+                    <p class="text-sm text-gray-700">Created personalized content</p>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-6">
+                <div class="relative pt-1">
+                  <div class="flex mb-2 items-center justify-between">
+                    <div>
+                      <span
+                        class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-nakama-primary bg-nakama-light">
+                        Progress
+                      </span>
+                    </div>
+                    <div class="text-right">
+                      <span class="text-xs font-semibold inline-block text-nakama-primary">
+                        65%
+                      </span>
+                    </div>
+                  </div>
+                  <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-nakama-light">
+                    <div style="width:65%"
+                      class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-nakama-primary">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features Section -->
+  <div class="py-12 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="lg:text-center">
+        <h2 class="text-base text-nakama-primary font-semibold tracking-wide uppercase">Features</h2>
+        <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+          How NAKAMA Helps You Learn Better
+        </p>
+        <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+          Our AI-powered platform adapts in real-time to your learning needs and preferences.
+        </p>
+      </div>
+
+      <div class="mt-10">
+        <div class="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
+          <div class="relative p-6 rounded-lg border border-gray-200 card-hover transition duration-300">
+            <div
+              class="absolute -top-5 left-5 w-12 h-12 rounded-full bg-nakama-primary flex items-center justify-center text-white">
+              <i class="fas fa-brain text-xl"></i>
+            </div>
+            <h3 class="ml-16 text-lg font-medium text-gray-900">Adaptive Learning Paths</h3>
+            <p class="mt-2 text-base text-gray-500">
+              NAKAMA continuously analyzes your performance and adjusts the learning materials to match your pace and
+              comprehension level.
+            </p>
+          </div>
+
+          <div class="relative p-6 rounded-lg border border-gray-200 card-hover transition duration-300">
+            <div
+              class="absolute -top-5 left-5 w-12 h-12 rounded-full bg-nakama-primary flex items-center justify-center text-white">
+              <i class="fas fa-chart-line text-xl"></i>
+            </div>
+            <h3 class="ml-16 text-lg font-medium text-gray-900">Real-time Progress Tracking</h3>
+            <p class="mt-2 text-base text-gray-500">
+              Visual dashboards show your progress across all subjects, highlighting strengths and areas needing
+              improvement.
+            </p>
+          </div>
+
+          <div class="relative p-6 rounded-lg border border-gray-200 card-hover transition duration-300">
+            <div
+              class="absolute -top-5 left-5 w-12 h-12 rounded-full bg-nakama-primary flex items-center justify-center text-white">
+              <i class="fas fa-question-circle text-xl"></i>
+            </div>
+            <h3 class="ml-16 text-lg font-medium text-gray-900">Smart Assessments</h3>
+            <p class="mt-2 text-base text-gray-500">
+              Our AI generates personalized quizzes that adapt based on your responses, focusing on concepts you need to
+              practice most.
+            </p>
+          </div>
+
+          <div class="relative p-6 rounded-lg border border-gray-200 card-hover transition duration-300">
+            <div
+              class="absolute -top-5 left-5 w-12 h-12 rounded-full bg-nakama-primary flex items-center justify-center text-white">
+              <i class="fas fa-lightbulb text-xl"></i>
+            </div>
+            <h3 class="ml-16 text-lg font-medium text-gray-900">Knowledge Expansion</h3>
+            <p class="mt-2 text-base text-gray-500">
+              Beyond core curriculum, NAKAMA suggests related topics and interdisciplinary connections to broaden your
+              understanding.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Learning Paths Section -->
+  <div id="courses-section" class="py-12 bg-nakama-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="lg:text-center mb-12">
+        <h2 class="text-base text-nakama-primary font-semibold tracking-wide uppercase">Your Learning Paths</h2>
+        <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+          Personalized Curriculum Just For You
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Learning Path Card 1 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300">
+          <div class="p-6">
+            <div class="flex items-center">
+              <div class="w-14 h-14 rounded-full bg-nakama-accent flex items-center justify-center text-nakama-primary">
+                <i class="fas fa-atom text-2xl"></i>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-lg font-semibold text-gray-900">Advanced Physics</h3>
+                <p class="text-gray-500">Master quantum mechanics</p>
+              </div>
+            </div>
+            <p class="mt-4 text-gray-600">
+              Your path focuses on quantum theory where you've shown interest, with supplemental materials on
+              mathematical foundations.
+            </p>
+            <div class="mt-6">
+              <div class="flex justify-between items-center">
+                <span class="text-sm font-medium text-nakama-primary">Progress</span>
+                <span class="text-sm font-medium text-nakama-primary">42%</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+                <div class="bg-nakama-primary h-2.5 rounded-full" style="width: 42%"></div>
+              </div>
+            </div>
+            <div class="mt-6 flex justify-between items-center">
+              <span class="text-sm text-gray-500">Next: Wave-Particle Duality</span>
+              <button class="text-nakama-primary hover:text-nakama-dark">
+                <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Learning Path Card 2 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300">
+          <div class="p-6">
+            <div class="flex items-center">
+              <div class="w-14 h-14 rounded-full bg-nakama-accent flex items-center justify-center text-nakama-primary">
+                <i class="fas fa-code text-2xl"></i>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-lg font-semibold text-gray-900">Machine Learning</h3>
+                <p class="text-gray-500">From basics to applications</p>
+              </div>
+            </div>
+            <p class="mt-4 text-gray-600">
+              Based on your strong math foundation, we've accelerated the theory sections to focus more on practical
+              implementations.
+            </p>
+            <div class="mt-6">
+              <div class="flex justify-between items-center">
+                <span class="text-sm font-medium text-nakama-primary">Progress</span>
+                <span class="text-sm font-medium text-nakama-primary">78%</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+                <div class="bg-nakama-primary h-2.5 rounded-full" style="width: 78%"></div>
+              </div>
+            </div>
+            <div class="mt-6 flex justify-between items-center">
+              <span class="text-sm text-gray-500">Next: Neural Networks</span>
+              <button class="text-nakama-primary hover:text-nakama-dark">
+                <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Learning Path Card 3 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300">
+          <div class="p-6">
+            <div class="flex items-center">
+              <div class="w-14 h-14 rounded-full bg-nakama-accent flex items-center justify-center text-nakama-primary">
+                <i class="fas fa-book text-2xl"></i>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-lg font-semibold text-gray-900">Literature Analysis</h3>
+                <p class="text-gray-500">Critical thinking & writing</p>
+              </div>
+            </div>
+            <p class="mt-4 text-gray-600">
+              Noticing your interest in postmodern works, we've curated a special collection with analytical frameworks.
+            </p>
+            <div class="mt-6">
+              <div class="flex justify-between items-center">
+                <span class="text-sm font-medium text-nakama-primary">Progress</span>
+                <span class="text-sm font-medium text-nakama-primary">35%</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+                <div class="bg-nakama-primary h-2.5 rounded-full" style="width: 35%"></div>
+              </div>
+            </div>
+            <div class="mt-6 flex justify-between items-center">
+              <span class="text-sm text-gray-500">Next: Deconstructionism</span>
+              <button class="text-nakama-primary hover:text-nakama-dark">
+                <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 text-center">
+        <a href="assessments.html"
+          class="bg-nakama-primary text-white px-6 py-3 rounded-md text-lg font-semibold hover:bg-nakama-dark transition duration-300">
+          Explore All Learning Paths
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Assessment Section -->
+  <div class="py-12 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
+        <div class="mb-12 lg:mb-0">
+          <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl mb-6">
+            Smart Assessments That Adapt To You
+          </h2>
+          <p class="text-lg text-gray-500 mb-8">
+            NAKAMA's assessment engine dynamically adjusts question difficulty based on your responses, pinpointing
+            exactly what you know and where you need help.
+          </p>
+
+          <div class="space-y-6">
+            <div class="flex">
+              <div class="flex-shrink-0">
+                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-nakama-primary text-white">
+                  <i class="fas fa-bolt"></i>
+                </div>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-lg font-medium text-gray-900">Real-time Adaptation</h3>
+                <p class="mt-2 text-base text-gray-500">
+                  Questions get harder or easier based on your performance, ensuring accurate measurement of your
+                  knowledge.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex">
+              <div class="flex-shrink-0">
+                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-nakama-primary text-white">
+                  <i class="fas fa-chart-pie"></i>
+                </div>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-lg font-medium text-gray-900">Detailed Analytics</h3>
+                <p class="mt-2 text-base text-gray-500">
+                  After each assessment, receive a comprehensive breakdown of your strengths and weaknesses.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex">
+              <div class="flex-shrink-0">
+                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-nakama-primary text-white">
+                  <i class="fas fa-road"></i>
+                </div>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-lg font-medium text-gray-900">Personalized Recommendations</h3>
+                <p class="mt-2 text-base text-gray-500">
+                  Get customized study suggestions based on your assessment results to maximize learning efficiency.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-10">
+            <a href="assessments.html"
+              class="bg-nakama-primary text-white px-6 py-3 rounded-md text-lg font-semibold hover:bg-nakama-dark transition duration-300">
+              Take a Smart Assessment
+            </a>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="bg-nakama-light rounded-2xl p-8 shadow-lg">
+            <div class="text-center mb-6">
+              <h3 class="text-xl font-semibold text-gray-900">Your Latest Assessment Results</h3>
+              <p class="text-nakama-primary">Advanced Mathematics</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-6 mb-8">
+              <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+                <div class="text-3xl font-bold text-nakama-primary">87%</div>
+                <div class="text-sm text-gray-500">Overall Score</div>
+              </div>
+              <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+                <div class="text-3xl font-bold text-nakama-primary">+12%</div>
+                <div class="text-sm text-gray-500">Improvement</div>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="text-sm font-medium text-gray-700">Full-Stack Web Development</span>
+                  <span class="text-sm font-medium text-nakama-primary">92%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                  <div class="bg-nakama-primary h-2 rounded-full" style="width: 92%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="text-sm font-medium text-gray-700">Introduction to Quantum Physics</span>
+                  <span class="text-sm font-medium text-nakama-primary">85%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                  <div class="bg-nakama-primary h-2 rounded-full" style="width: 85%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="text-sm font-medium text-gray-700">Advanced Machine Learning</span>
+                  <span class="text-sm font-medium text-nakama-primary">78%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                  <div class="bg-nakama-primary h-2 rounded-full" style="width: 78%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="text-sm font-medium text-gray-700">Introduction to Data Science</span>
+                  <span class="text-sm font-medium text-nakama-primary">65%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                  <div class="bg-nakama-primary h-2 rounded-full" style="width: 65%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 text-center">
+              <button
+                class="bg-nakama-primary text-white px-6 py-2 rounded-md text-sm font-semibold hover:bg-nakama-dark transition duration-300">
+                View Detailed Report
+              </button>
+            </div>
+          </div>
+
+          <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-full shadow-lg pulse-animation">
+            <div class="w-12 h-12 rounded-full bg-nakama-primary flex items-center justify-center text-white">
+              <i class="fas fa-robot text-xl"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Knowledge Expansion Section -->
+  <div class="py-12 bg-nakama-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl mb-4">
+          Expand Your Knowledge Horizons
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          NAKAMA identifies connections across disciplines to help you develop a more comprehensive understanding.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300">
+          <div class="p-6">
+            <div
+              class="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-nakama-accent text-nakama-primary">
+              <i class="fas fa-project-diagram text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-center text-gray-900 mb-4">Interdisciplinary Connections</h3>
+            <p class="text-gray-600 text-center">
+              Discover how concepts from your primary subject connect to other fields, creating a web of understanding.
+            </p>
+            <div class="mt-6 text-center">
+              <a href="explore_connections_features.html">
+                <button class="text-nakama-primary hover:text-nakama-dark font-medium">
+                  Explore Connections →
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300">
+          <div class="p-6">
+            <div
+              class="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-nakama-accent text-nakama-primary">
+              <i class="fas fa-lightbulb text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-center text-gray-900 mb-4">Creative Thinking</h3>
+            <p class="text-gray-600 text-center">
+              Exercises designed to push you beyond rote learning into innovative application of knowledge.
+            </p>
+            <div class="mt-6 text-center">
+              <a href="creative_thinking_challenges.html">
+                <button class="text-nakama-primary hover:text-nakama-dark font-medium">
+                  Try Challenges →
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300">
+          <div class="p-6">
+            <div
+              class="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-nakama-accent text-nakama-primary">
+              <i class="fas fa-globe-americas text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-center text-gray-900 mb-4">Real-world Applications</h3>
+            <p class="text-gray-600 text-center">
+              Case studies showing how academic concepts solve practical problems in industry and society.
+            </p>
+            <div class="mt-6 text-center">
+              <a href="case_studies.html">
+                <button class="text-nakama-primary hover:text-nakama-dark font-medium">
+                  View Case Studies →
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 bg-nakama-primary rounded-2xl p-8 text-white">
+        <div class="md:flex items-center">
+          <div class="md:w-2/3 mb-6 md:mb-0">
+            <h3 class="text-2xl font-bold mb-2">Ready to transform your learning experience?</h3>
+            <p class="text-nakama-light">
+              Join thousands of students who are achieving more with NAKAMA's personalized adaptive learning platform.
+            </p>
+          </div>
+          <div class="md:w-1/3 text-center md:text-right">
+            <a href="auth.html"
+              class="bg-white text-nakama-primary px-6 py-3 rounded-md text-lg font-semibold hover:bg-gray-100 transition duration-300">
+              Get Started Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white">
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-lg font-semibold mb-4">NAKAMA</h3>
+          <p class="text-gray-400">
+            National Adaptive Knowledge and Assessment Management Application - revolutionizing education through AI.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Learning</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white">Courses</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Learning Paths</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Assessments</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Progress Tracking</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Resources</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Research</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Webinars</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Help Center</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Connect</h3>
+          <div class="flex space-x-4 mb-4">
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+          <p class="text-gray-400">nakama250@gmail.com</p>
+        </div>
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-gray-800">
+        <p class="text-gray-400 text-center">
+          &copy; 2025 NAKAMA. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Sample JavaScript for interactive elements
+    document.addEventListener('DOMContentLoaded', function () {
+      // Simulate loading user data
+      setTimeout(() => {
+        const progressBars = document.querySelectorAll('.progress-ring__circle');
+        progressBars.forEach(bar => {
+          const circumference = 2 * Math.PI * 40;
+          bar.style.strokeDasharray = `${circumference} ${circumference}`;
+          bar.style.strokeDashoffset = circumference;
+
+          const offset = circumference - 65 / 100 * circumference;
+          bar.style.strokeDashoffset = offset;
+        });
+      }, 500);
+
+      // Add click handlers for learning path items
+      const pathItems = document.querySelectorAll('.learning-path-item');
+      pathItems.forEach(item => {
+        item.addEventListener('click', function () {
+          // In a real app, this would navigate to the selected learning path
+          console.log('Selected path:', this.querySelector('h3').textContent);
+        });
+      });
+
+      // Assessment button handler
+      const assessmentBtn = document.querySelector('#start-assessment');
+      if (assessmentBtn) {
+        assessmentBtn.addEventListener('click', function () {
+          alert('Starting adaptive assessment... This would launch the assessment flow in a real application.');
+        });
+      }
+    });
+  </script>
+
+  <!-- JavaScript for Hamburger Menu -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const menuOpenIcon = mobileMenuButton.querySelector('svg.block');
+      const menuCloseIcon = mobileMenuButton.querySelector('svg.hidden');
+      
+      mobileMenuButton.addEventListener('click', function() {
+        // Toggle mobile menu visibility
+        mobileMenu.classList.toggle('hidden');
+        
+        // Toggle between hamburger and X icons
+        menuOpenIcon.classList.toggle('hidden');
+        menuOpenIcon.classList.toggle('block');
+        menuCloseIcon.classList.toggle('hidden');
+        menuCloseIcon.classList.toggle('block');
+        
+        // Toggle aria-expanded attribute
+        const expanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+        mobileMenuButton.setAttribute('aria-expanded', !expanded);
+      });
+    });
+  </script>
+</body>
+
+</html>
